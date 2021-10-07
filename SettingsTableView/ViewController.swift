@@ -2,7 +2,20 @@ import UIKit
 
 struct Section {
     let title: String
-    let options: [SettingsOption]
+    let options: [SettingsOptionType]
+}
+
+enum SettingsOptionType {
+    case staticCell(model: SettingsOption)
+    case switchCell(model: SettingsSwitchOption)
+}
+
+struct SettingsSwitchOption {
+    let title: String
+    let icon: UIImage?
+    let iconBackgroundColor: UIColor
+    let handler: (() -> Void)
+    var isOn: Bool
 }
 
 struct SettingsOption {
@@ -17,6 +30,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     private let tableView: UITableView = {
         var table = UITableView(frame: .zero, style: .grouped)
         table.register(SettingsTableViewCell.self, forCellReuseIdentifier: SettingsTableViewCell.identifier)
+        table.register(SwitchTableViewCell.self, forCellReuseIdentifier: SwitchTableViewCell.identifier)
         return table
     }()
     
@@ -34,59 +48,61 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         // 1st section
         models.append(Section(title: "", options: [
-            SettingsOption(title: "Авиарежим", icon: UIImage(systemName: "airplane"), iconBackgroundColor: .systemOrange) {
+            .switchCell(model: SettingsSwitchOption(title: "Авиарежим", icon: UIImage(systemName: "airplane"), iconBackgroundColor: .systemOrange, handler: {
                 print("Нажата ячейка Авиарежим")
-            },
-            SettingsOption(title: "Wi-Fi", icon: UIImage(systemName: "wifi"), iconBackgroundColor: .systemBlue) {
+            }, isOn: false)),
+            .staticCell(model: SettingsOption(title: "Wi-Fi", icon: UIImage(systemName: "wifi"), iconBackgroundColor: .systemBlue) {
                 print("Нажата ячейка Wi-Fi")
-            },
-            SettingsOption(title: "Bluetooth", icon: UIImage(systemName: "bluetooth"), iconBackgroundColor: .systemBlue) {
+            }),
+            .staticCell(model: SettingsOption(title: "Bluetooth", icon: UIImage(systemName: "iphone.homebutton.radiowaves.left.and.right"), iconBackgroundColor: .systemBlue, handler: {
                 print("Нажата ячейка Bluetooth")
-            },
-            SettingsOption(title: "Сотовая связь", icon: UIImage(systemName: "antenna.radiowaves.left.and.right"), iconBackgroundColor: .systemGreen) {
+            })),
+            .staticCell(model: SettingsOption(title: "Сотовая связь", icon: UIImage(systemName: "antenna.radiowaves.left.and.right"), iconBackgroundColor: .systemGreen) {
                 print("Нажата ячейка Сотовая связь")
-            },
-            SettingsOption(title: "Режим модема", icon: UIImage(systemName: "personalhotspot"), iconBackgroundColor: .systemGreen) {
+            }),
+            .staticCell(model: SettingsOption(title: "Режим модема", icon: UIImage(systemName: "personalhotspot"), iconBackgroundColor: .systemGreen) {
                 print("Нажата ячейка Режим модема")
-            },
-            SettingsOption(title: "VPN", icon: UIImage(systemName: "house"), iconBackgroundColor: .systemBlue) {
+            }),
+            .switchCell(model: SettingsSwitchOption(title: "VPN", icon: UIImage(systemName: "paperplane.fill"), iconBackgroundColor: .systemBlue, handler: {
                 print("Нажата ячейка VPN")
-            }
+            }, isOn: false)),
         ]))
         
+        
+            
         // 2nd section
         models.append(Section(title: "", options: [
-            SettingsOption(title: "Уведомления", icon: UIImage(systemName: "airplane"), iconBackgroundColor: .systemRed) {
+            .staticCell(model: SettingsOption(title: "Уведомления", icon: UIImage(systemName: "app.badge"), iconBackgroundColor: .systemRed) {
                 print("Нажата ячейка Уведомления")
-            },
-            SettingsOption(title: "Звуки, тактильные сигналы", icon: UIImage(systemName: "house"), iconBackgroundColor: .systemPink) {
+            }),
+            .staticCell(model: SettingsOption(title: "Звуки, тактильные сигналы", icon: UIImage(systemName: "volume.3.fill"), iconBackgroundColor: .systemPink) {
                 print("Нажата ячейка Звуки, тактильные сигналы")
-            },
-            SettingsOption(title: "Не беспокоить", icon: UIImage(systemName: "house"), iconBackgroundColor: .systemPurple) {
+            }),
+            .staticCell(model: SettingsOption(title: "Не беспокоить", icon: UIImage(systemName: "moon.fill"), iconBackgroundColor: .systemPurple) {
                 print("Нажата ячейка Не беспокоить")
-            },
-            SettingsOption(title: "Экранное время", icon: UIImage(systemName: "house"), iconBackgroundColor: .systemPurple) {
+            }),
+            .staticCell(model: SettingsOption(title: "Экранное время", icon: UIImage(systemName: "hourglass"), iconBackgroundColor: .systemPurple) {
                 print("Нажата ячейка Экранное время")
-            }
+            })
         ]))
         
         // 3rd section
         models.append(Section(title: "", options: [
-            SettingsOption(title: "Основные", icon: UIImage(systemName: "airplane"), iconBackgroundColor: .systemGray) {
+            .staticCell(model: SettingsOption(title: "Основные", icon: UIImage(systemName: "gear"), iconBackgroundColor: .systemGray) {
                 print("Нажата ячейка Основные")
-            },
-            SettingsOption(title: "Пункт управления", icon: UIImage(systemName: "house"), iconBackgroundColor: .systemGray) {
+            }),
+            .staticCell(model: SettingsOption(title: "Пункт управления", icon: UIImage(systemName: "house"), iconBackgroundColor: .systemGray) {
                 print("Нажата ячейка Пункт управления")
-            },
-            SettingsOption(title: "Экран и яркость", icon: UIImage(systemName: "house"), iconBackgroundColor: .systemBlue) {
+            }),
+            .staticCell(model: SettingsOption(title: "Экран и яркость", icon: UIImage(systemName: "textformat.size"), iconBackgroundColor: .systemBlue) {
                 print("Нажата ячейка Экран и яркость")
-            },
-            SettingsOption(title: "Экран \"Домой\"", icon: UIImage(systemName: "house"), iconBackgroundColor: .purple) {
+            }),
+            .staticCell(model: SettingsOption(title: "Экран \"Домой\"", icon: UIImage(systemName: "homekit"), iconBackgroundColor: .purple) {
                 print("Нажата ячейка Экран \"Домой\"")
-            },
-            SettingsOption(title: "Универсальный доступ", icon: UIImage(systemName: "house"), iconBackgroundColor: .systemBlue) {
+            }),
+            .staticCell(model: SettingsOption(title: "Универсальный доступ", icon: UIImage(systemName: "figure.stand"), iconBackgroundColor: .systemBlue) {
                 print("Нажата ячейка Универсальный доступ")
-            }
+            })
         ]))
         
     }
@@ -103,18 +119,32 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = models[indexPath.section].options[indexPath.row]
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.identifier, for: indexPath) as? SettingsTableViewCell else {
-            return UITableViewCell()
+        
+        switch model.self {
+        case .staticCell(let model):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.identifier, for: indexPath) as? SettingsTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.configure(with: model)
+            return cell
+        case .switchCell(let model):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SwitchTableViewCell.identifier, for: indexPath) as? SwitchTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.configure(with: model)
+            return cell
         }
         
-        cell.configure(with: model)
-        
-        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let model = models[indexPath.section].options[indexPath.row]
-        model.handler()
+        let type = models[indexPath.section].options[indexPath.row]
+        switch type.self {
+        case .staticCell(let model):
+            model.handler()
+        case .switchCell(let model):
+            model.handler()
+        }
     }
 }

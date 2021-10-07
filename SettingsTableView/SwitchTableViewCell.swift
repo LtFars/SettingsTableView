@@ -1,7 +1,7 @@
 import UIKit
 
-class SettingsTableViewCell: UITableViewCell {
-    static let identifier = "SettingsTableViewCell"
+class SwitchTableViewCell: UITableViewCell {
+    static let identifier = "SwitchTableViewCell"
     
     private let iconContainer: UIView = {
        let view = UIView()
@@ -24,28 +24,21 @@ class SettingsTableViewCell: UITableViewCell {
         return label
     }()
     
-    let additionalLabel: UILabel = {
-       let label = UILabel()
-        label.textAlignment = .right
-        label.text = ""
-        label.textColor = .gray
-        label.numberOfLines = 1
-        return label
+    private let mySwitch: UISwitch = {
+        let mySwitch = UISwitch()
+        mySwitch.onTintColor = .systemGreen
+        return mySwitch
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(label)
         contentView.addSubview(iconContainer)
-        contentView.addSubview(additionalLabel)
-        
-        
-        
-        
+        contentView.addSubview(mySwitch)
         iconContainer.addSubview(iconImageView)
         
         contentView.clipsToBounds = true
-        accessoryType = .disclosureIndicator
+        accessoryType = .none
     }
     
     required init?(coder: NSCoder) {
@@ -63,19 +56,16 @@ class SettingsTableViewCell: UITableViewCell {
                                      width: imageSize,
                                      height: imageSize)
         
+        mySwitch.sizeToFit()
+        mySwitch.frame = CGRect(x: (contentView.frame.size.width - mySwitch.frame.size.width)-20,
+                                y: (contentView.frame.size.height - mySwitch.frame.size.height)/2,
+                                width: mySwitch.frame.size.width,
+                                height: mySwitch.frame.size.height)
+        
         label.frame = CGRect(x: 25 + iconContainer.frame.size.width,
                              y: 0,
                              width: contentView.frame.size.width - 25 - iconContainer.frame.size.width,
                              height: contentView.frame.size.height)
-        
-        additionalLabel.frame = CGRect(x: (contentView.frame.size.width - contentView.frame.size.width/1.9),
-                             y: (contentView.frame.size.height / 10),
-                             width: contentView.frame.size.width/2,
-                             height: iconContainer.frame.size.height)
-    }
-    
-    private func createText() {
-        
     }
     
     override func prepareForReuse() {
@@ -83,23 +73,14 @@ class SettingsTableViewCell: UITableViewCell {
         iconImageView.image = nil
         label.text = nil
         iconContainer.backgroundColor = nil
-        additionalLabel.text = ""
+        mySwitch.isOn = false
     }
     
-    public func configure(with model: SettingsOption) {
+    public func configure(with model: SettingsSwitchOption) {
         label.text = model.title
         iconImageView.image = model.icon
         iconContainer.backgroundColor = model.iconBackgroundColor
-        
-        switch label.text {
-        case "Wi-Fi":
-            additionalLabel.text = "Не подключено"
-        case "Bluetooth":
-            additionalLabel.text = "Вкл."
-        default:
-            break
-        }
-        
+        mySwitch.isOn = model.isOn
     }
     
 }

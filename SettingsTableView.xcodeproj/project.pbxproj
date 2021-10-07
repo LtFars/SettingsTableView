@@ -61,11 +61,11 @@
 				03D7D8AF270D923700589FFF /* AppDelegate.swift */,
 				03D7D8B1270D923700589FFF /* SceneDelegate.swift */,
 				03D7D8B3270D923700589FFF /* ViewController.swift */,
+				03D7D8C3270DA1CB00589FFF /* SettingsTableViewCell.swift */,
 				03D7D8B5270D923700589FFF /* Main.storyboard */,
 				03D7D8B8270D923900589FFF /* Assets.xcassets */,
 				03D7D8BA270D923900589FFF /* LaunchScreen.storyboard */,
 				03D7D8BD270D923900589FFF /* Info.plist */,
-				03D7D8C3270DA1CB00589FFF /* SettingsTableViewCell.swift */,
 			);
 			path = SettingsTableView;
 			sourceTree = "<group>";

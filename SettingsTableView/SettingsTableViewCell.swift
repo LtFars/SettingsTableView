@@ -1,6 +1,7 @@
 import UIKit
 
 class SettingsTableViewCell: UITableViewCell {
+    
     static let identifier = "SettingsTableViewCell"
     
     private let iconContainer: UIView = {
@@ -38,12 +39,7 @@ class SettingsTableViewCell: UITableViewCell {
         contentView.addSubview(label)
         contentView.addSubview(iconContainer)
         contentView.addSubview(additionalLabel)
-        
-        
-        
-        
         iconContainer.addSubview(iconImageView)
-        
         contentView.clipsToBounds = true
         accessoryType = .disclosureIndicator
     }
@@ -74,10 +70,6 @@ class SettingsTableViewCell: UITableViewCell {
                              height: iconContainer.frame.size.height)
     }
     
-    private func createText() {
-        
-    }
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         iconImageView.image = nil
@@ -99,7 +91,5 @@ class SettingsTableViewCell: UITableViewCell {
         default:
             break
         }
-        
     }
-    
 }

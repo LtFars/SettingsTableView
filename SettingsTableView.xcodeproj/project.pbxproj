@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03C1A5622711A5D800BB0C1D /* TableSettingsSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C1A5612711A5D800BB0C1D /* TableSettingsSections.swift */; };
 		03D7D8B0270D923700589FFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D7D8AF270D923700589FFF /* AppDelegate.swift */; };
 		03D7D8B2270D923700589FFF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D7D8B1270D923700589FFF /* SceneDelegate.swift */; };
 		03D7D8B4270D923700589FFF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D7D8B3270D923700589FFF /* ViewController.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03C1A5612711A5D800BB0C1D /* TableSettingsSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSettingsSections.swift; sourceTree = "<group>"; };
 		03D7D8AC270D923700589FFF /* SettingsTableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SettingsTableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03D7D8AF270D923700589FFF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03D7D8B1270D923700589FFF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +43,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03C1A5602711A56C00BB0C1D /* CellsSettings */ = {
+			isa = PBXGroup;
+			children = (
+				03C1A5612711A5D800BB0C1D /* TableSettingsSections.swift */,
+			);
+			path = CellsSettings;
+			sourceTree = "<group>";
+		};
 		03D7D8A3270D923700589FFF = {
 			isa = PBXGroup;
 			children = (
@@ -60,15 +70,16 @@
 		03D7D8AE270D923700589FFF /* SettingsTableView */ = {
 			isa = PBXGroup;
 			children = (
+				03C1A5602711A56C00BB0C1D /* CellsSettings */,
 				03D7D8AF270D923700589FFF /* AppDelegate.swift */,
 				03D7D8B1270D923700589FFF /* SceneDelegate.swift */,
 				03D7D8B3270D923700589FFF /* ViewController.swift */,
 				03D7D8C3270DA1CB00589FFF /* SettingsTableViewCell.swift */,
+				03D7D8C5270EFAB300589FFF /* SwitchTableViewCell.swift */,
 				03D7D8B5270D923700589FFF /* Main.storyboard */,
 				03D7D8B8270D923900589FFF /* Assets.xcassets */,
 				03D7D8BA270D923900589FFF /* LaunchScreen.storyboard */,
 				03D7D8BD270D923900589FFF /* Info.plist */,
-				03D7D8C5270EFAB300589FFF /* SwitchTableViewCell.swift */,
 			);
 			path = SettingsTableView;
 			sourceTree = "<group>";
@@ -147,6 +158,7 @@
 				03D7D8B4270D923700589FFF /* ViewController.swift in Sources */,
 				03D7D8B0270D923700589FFF /* AppDelegate.swift in Sources */,
 				03D7D8C6270EFAB400589FFF /* SwitchTableViewCell.swift in Sources */,
+				03C1A5622711A5D800BB0C1D /* TableSettingsSections.swift in Sources */,
 				03D7D8C4270DA1CB00589FFF /* SettingsTableViewCell.swift in Sources */,
 				03D7D8B2270D923700589FFF /* SceneDelegate.swift in Sources */,
 			);
@@ -225,7 +237,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -280,7 +292,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

@@ -1,6 +1,7 @@
 import UIKit
 
 class SwitchTableViewCell: UITableViewCell {
+    
     static let identifier = "SwitchTableViewCell"
     
     private let iconContainer: UIView = {
@@ -36,7 +37,6 @@ class SwitchTableViewCell: UITableViewCell {
         contentView.addSubview(iconContainer)
         contentView.addSubview(mySwitch)
         iconContainer.addSubview(iconImageView)
-        
         contentView.clipsToBounds = true
         accessoryType = .none
     }
@@ -82,5 +82,4 @@ class SwitchTableViewCell: UITableViewCell {
         iconContainer.backgroundColor = model.iconBackgroundColor
         mySwitch.isOn = model.isOn
     }
-    
 }
